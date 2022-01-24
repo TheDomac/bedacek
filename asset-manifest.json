@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bedacek/static/css/main.31186fc8.css",
-    "main.js": "/bedacek/static/js/main.fed48296.js",
+    "main.js": "/bedacek/static/js/main.d3f0b813.js",
     "static/js/787.30315baa.chunk.js": "/bedacek/static/js/787.30315baa.chunk.js",
     "index.html": "/bedacek/index.html",
     "main.31186fc8.css.map": "/bedacek/static/css/main.31186fc8.css.map",
-    "main.fed48296.js.map": "/bedacek/static/js/main.fed48296.js.map",
+    "main.d3f0b813.js.map": "/bedacek/static/js/main.d3f0b813.js.map",
     "787.30315baa.chunk.js.map": "/bedacek/static/js/787.30315baa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31186fc8.css",
-    "static/js/main.fed48296.js"
+    "static/js/main.d3f0b813.js"
   ]
 }
