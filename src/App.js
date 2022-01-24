@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { LOCAL_STORAGE_KEYS } from "./consts/localStorage";
+import { useState } from "react";
 import { WORDS } from "./consts/words";
 
 import Cell from "./Cell"
@@ -41,16 +40,7 @@ const initialRows = [
 ]
 
 const getRandomWord = () => {
-  const pastWords = localStorage.getItem(LOCAL_STORAGE_KEYS.pastWords);
-  const pastWordsParsed = pastWords ? JSON.parse(pastWords) : [];
-  const filteredWords = WORDS.filter(word => !pastWordsParsed.includes(word));
-  const availableWords = filteredWords.length > 0 ? filteredWords : WORDS;
-
-  if (filteredWords.length === 0) {
-    localStorage.setItem(LOCAL_STORAGE_KEYS.pastWords, JSON.stringify([]))
-  }
-
-  return availableWords[Math.floor(Math.random() * availableWords.length)]
+  return WORDS[Math.floor(Math.random() * WORDS.length)]
 }
 
 const initialWord = getRandomWord()
@@ -62,16 +52,6 @@ const App = () => {
   const [activeRow, setActiveRow] = useState(0)
   const [isGameOver, setIsGameOver] = useState(false);
   const [isVictory, setIsVictory] = useState(false)
-
-  useEffect( () => {
-    const pastWords = localStorage.getItem(LOCAL_STORAGE_KEYS.pastWords);
-    const pastWordsParsed = pastWords ? JSON.parse(pastWords) : [];
-  
-    const newPastWords = [...pastWordsParsed, word];
-    localStorage.setItem(LOCAL_STORAGE_KEYS.pastWords, JSON.stringify(newPastWords))
-  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const handleEnterClick = () => {
     if (rows[activeRow] && rows[activeRow].every(value => value !== null)) {
