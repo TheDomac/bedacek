@@ -25,7 +25,10 @@ const getBackspacedRow = (row) => {
     return row
   };
 
-  const rowWithoutLast = row.slice(0, row.length - 1);
+  console.log(row)
+  const clearedRow = row.filter(r => r);
+  const rowWithoutLast = clearedRow.slice(0, clearedRow.length - 1);
+  console.log(rowWithoutLast)
 
   return [rowWithoutLast[0] || null, rowWithoutLast[1] || null, rowWithoutLast[2] || null, rowWithoutLast[3] || null, rowWithoutLast[4] || null]
 }

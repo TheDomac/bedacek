@@ -355,5 +355,6 @@ export const WORDS = [
       "k",
       "v",
       "a"
-    ]
+    ],
+    ["b", "e", "r", "b", "a"]
   ]
