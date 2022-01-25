@@ -61,6 +61,7 @@ code {
   border-radius: 8px;
   text-transform: uppercase;
   cursor: pointer;
+  user-select: none;
 }
 
 @media only screen and (max-width: 600px) {
