@@ -20,7 +20,7 @@ const Button = ({ letter, onClick, title, handleLetterClick, pastRows, word }) =
     if (letterIsUsedInWord) {
         pastRows.forEach(row => {
             row.forEach((value, i) =>  {
-                if (word[i] === value) {
+                if (value === letter && word[i] === letter) {
                     letterIsUsedInWordInCorrectPlace = true;
                 }
             })
