@@ -1,34 +1,12 @@
 import { useState } from "react";
-import { WORDS } from "./consts/words";
 
 import Cell from "./Cell"
 import Button from "./Button"
 import Backspace from "./Backspace";
 
-const getUpdatedRow = (row, value) => {
-  if (row.every(value => value !== null)) {
-    return row;
-  }
-
-
-  const emptyPlaceIndex = row.findIndex(value => value === null);
-  return [
-    ...row.slice(0, emptyPlaceIndex),
-    value,
-    ...row.slice(emptyPlaceIndex + 1)
-  ]
-}
-
-const getBackspacedRow = (row) => {
-  if (row.every(value => value === null)) {
-    return row
-  };
-
-  const clearedRow = row.filter(r => r);
-  const rowWithoutLast = clearedRow.slice(0, clearedRow.length - 1);
-
-  return [rowWithoutLast[0] || null, rowWithoutLast[1] || null, rowWithoutLast[2] || null, rowWithoutLast[3] || null, rowWithoutLast[4] || null]
-}
+import getRandomWord from "./services/getRandomWord";
+import getUpdatedRow from "./services/getUpdatedRow";
+import getBackspacedRow from "./services/getBackspacedRow";
 
 const initialRows = [
   [null, null, null, null, null],
@@ -39,12 +17,7 @@ const initialRows = [
   [null, null, null, null, null]
 ]
 
-const getRandomWord = () => {
-  return WORDS[Math.floor(Math.random() * WORDS.length)]
-}
-
 const initialWord = getRandomWord()
-
 
 const App = () => {
   const [word, setWord] = useState(initialWord)
