@@ -62,6 +62,21 @@ code {
   text-transform: uppercase;
   cursor: pointer;
   user-select: none;
+  background: #676769;
+}
+
+.button.guessed {
+  background: #538d4e;
+}
+.button.usedInWord {
+  background: #b59f3b;
+}
+.button.used {
+  background: #3a3a3c;
+}
+
+.button:hover {
+  background-color: #8f8f8f;
 }
 
 @media only screen and (max-width: 600px) {

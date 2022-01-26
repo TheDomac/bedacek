@@ -14,7 +14,7 @@ const Button = ({
     }
   };
 
-  let background = "#575759";
+  let className = "button";
 
   const letterIsUsed = pastRows?.find((row) =>
     row.find((value) => value === letter)
@@ -34,20 +34,19 @@ const Button = ({
   }
 
   if (letterIsUsedInWordInCorrectPlace) {
-    background = "#538d4e";
+    className += " guessed";
   } else if (letterIsUsedInWord) {
-    background = "#b59f3b";
+    className += " usedInWord";
   } else if (letterIsUsed) {
-    background = "#3a3a3c";
+    className += " used";
   }
 
   let style = {
-    background,
     ...(title ? { width: "auto", padding: "0 10px" } : {}),
   };
 
   return (
-    <div className="button" style={style} onClick={handleClick}>
+    <div className={className} style={style} onClick={handleClick}>
       <div>{title || letter}</div>
     </div>
   );
