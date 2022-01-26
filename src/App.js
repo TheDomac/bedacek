@@ -22,23 +22,26 @@ const initialWord = getRandomWord();
 const App = () => {
   const [word, setWord] = useState(initialWord);
   const [rows, setRows] = useState(initialRows);
-  const [activeRow, setActiveRow] = useState(0);
+  const [activeRowNumber, setActiveRowNumber] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isVictory, setIsVictory] = useState(false);
 
   const handleEnterClick = () => {
-    if (rows[activeRow] && rows[activeRow].every((value) => value !== null)) {
-      if (rows[activeRow].every((value, i) => value === word[i])) {
-        setIsGameOver(true);
-        setIsVictory(true);
-      }
-
-      if (activeRow === rows.length - 1) {
-        setIsGameOver(true);
-      }
-
-      setActiveRow(activeRow + 1);
+    const allLettersFilled = rows[activeRowNumber] && rows[activeRowNumber].every((value) => value !== null)
+    if (!allLettersFilled) {
+      return;
     }
+
+    if (rows[activeRowNumber].every((value, i) => value === word[i])) {
+      setIsGameOver(true);
+      setIsVictory(true);
+    }
+
+    if (activeRowNumber === rows.length - 1) {
+      setIsGameOver(true);
+    }
+
+    setActiveRowNumber(activeRowNumber + 1);
   };
 
   const handleBackspaceClick = () => {
@@ -47,20 +50,20 @@ const App = () => {
     }
 
     const newRows = rows.map((row, i) =>
-      i === activeRow ? getBackspacedRow(row) : row
+      i === activeRowNumber ? getBackspacedRow(row) : row
     );
     setRows(newRows);
   };
 
   const handleLetterClick = (letter) => {
     const newRows = rows.map((row, i) =>
-      i === activeRow ? getUpdatedRow(row, letter) : row
+      i === activeRowNumber ? getUpdatedRow(row, letter) : row
     );
     setRows(newRows);
   };
 
   const handlePlayAgainClick = () => {
-    setActiveRow(0);
+    setActiveRowNumber(0);
     setRows(initialRows);
     const randomWord = getRandomWord();
     setWord(randomWord);
@@ -68,23 +71,23 @@ const App = () => {
     setIsVictory(false);
   };
 
-  const pastRows = rows.filter((row, i) => i < activeRow);
+  const pastRows = rows.filter((row, i) => i < activeRowNumber);
 
   return (
     <>
       <div className="container">
         {rows.map((row, rowIdx) => (
           <div className="row" key={rowIdx}>
-            {" "}
             {row.map((value, i) => (
               <Cell
                 key={i}
                 value={value}
                 word={word}
                 place={i}
-                activeRow={activeRow}
-                cellRow={rowIdx}
-              />
+                activeRowNumber={activeRowNumber}
+                cellRowNumber={rowIdx}
+                pastRows={rows.filter((row, i) => i <= rowIdx)}
+                />
             ))}
           </div>
         ))}
