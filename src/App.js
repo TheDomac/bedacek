@@ -19,12 +19,16 @@ const initialRows = [
 
 const initialWord = getRandomWord();
 
+const localNumberOfVictories = localStorage.getItem("numberOfVictories");
+const parsedNumberOfVictories = localNumberOfVictories ? Number(localNumberOfVictories) : 0;
+
 const App = () => {
   const [word, setWord] = useState(initialWord);
   const [rows, setRows] = useState(initialRows);
   const [activeRowNumber, setActiveRowNumber] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isVictory, setIsVictory] = useState(false);
+  const [numberOfVictories, setNumberOfVictories] = useState(parsedNumberOfVictories)
 
   const handleEnterClick = () => {
     const allLettersFilled = rows[activeRowNumber] && rows[activeRowNumber].every((value) => value !== null)
@@ -35,6 +39,10 @@ const App = () => {
     if (rows[activeRowNumber].every((value, i) => value === word[i])) {
       setIsGameOver(true);
       setIsVictory(true);
+    
+      const newNumberOfVictories = numberOfVictories + 1;
+      setNumberOfVictories(newNumberOfVictories);
+      localStorage.setItem("numberOfVictories", newNumberOfVictories)
     }
 
     if (activeRowNumber === rows.length - 1) {
@@ -99,6 +107,7 @@ const App = () => {
               <div style={{ textTransform: "uppercase" }}>{word.join("")}</div>
             )}
             <button onClick={handlePlayAgainClick}>Igraj ponovo</button>
+            <div>Broj pobjeda: {numberOfVictories}</div>
           </div>
         ) : (
           <>
