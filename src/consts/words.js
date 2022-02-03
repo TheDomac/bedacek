@@ -467,6 +467,7 @@ const fixTwoCharacterLetters = (array, firstLetter, secondLetter) => {
   ];
 };
 
+
 export const WORDS = words.reduce((prev, word) => {
   const asArray = word.split("");
   if (word.length === 5) {
@@ -478,4 +479,5 @@ export const WORDS = words.reduce((prev, word) => {
   const fixedForDz = fixTwoCharacterLetters(fixedForLj, "d", "ž");
 
   return prev.concat([fixedForDz]);
-}, []);
+}, []).filter(word => word.length === 5);
+console.log("------", WORDS)
